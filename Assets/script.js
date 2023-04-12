@@ -60,8 +60,12 @@ var scores = [];
 var mark = 0;
 var index = 0;
 var record = [];
+var timeLeft = 75
+var timeEl
+
 
 function start() {
+    timeLeft = 75
     // restart
     var removeAll = container;
     while(removeAll.hasChildNodes()) {
@@ -78,7 +82,11 @@ function start() {
     time.textContent = "Time: ";
     var second = document.createElement("span");
     second.setAttribute('id', "second");
+    var span = document.createElement("span")
     time.appendChild(second);
+    span.textContent = "75s"
+    span.setAttribute("id", "s");
+    time.appendChild(span);
     // create container title
     var opTitle = document.createElement("h1");
     opTitle.classList.add("title");
@@ -150,7 +158,7 @@ function createQuiz() {
 
         var sum = document.createElement("p");
         sum.classList.add("text");
-        sum.textContent = "Your final score is " + mark + " !";
+        sum.textContent = "Your final score is " + timeEl.textContent + " !"; //
         container.appendChild(sum);
 
         // form
@@ -183,16 +191,15 @@ function createQuiz() {
 }
 
 function timer() {
-
-    var timeLeft = 70;
-
+    
     var timeInterval = setInterval(function() {
-
-        var timeEl = document.querySelector("#second");
-        timeEl.textContent = timeLeft + "s";
+        var span = document.querySelector("#s");
+        span.textContent = "s";
+        timeEl = document.querySelector("#second");
+        timeEl.textContent = timeLeft;
         timeLeft--;
 
-        if (result.textContent.match(/wrong/gi)) {
+        if (result.textContent.match(/wrong/gi)) {  //
             timeLeft -= 10; 
         }
 
@@ -200,9 +207,8 @@ function timer() {
 
             clearInterval(timeInterval);
 
-            alert("Quiz is over");
-            timeEl.textContent = 0 + "s";
-
+        
+    
             index += questionsArr.length;
 
             createQuiz();
@@ -220,13 +226,12 @@ function checkResult(event) {
     check.classList.add("check-result");
     if (targetEl.hasAttribute("check")) {
         check.textContent = "Correct!";
-        mark += 10;
     } else {
         check.textContent = "Wrong!";
-        mark -= 10;
+        timeLeft -= 10;
     }
     result.appendChild(check);
-    scores.push(mark);
+    scores.push(timeLeft);
 
     setTimeout(() => {
         check.remove();
@@ -249,14 +254,12 @@ function recordHighScore(event) {
     } else {
         var recordObj = {
             name: playerName,
-            highScore: mark,
+            highScore: timeEl.textContent, //
         }
     }
 
     record.push(recordObj);
     saveData();
-    // reset mark
-    mark = 0;
     viewHighScore();
 }
 
