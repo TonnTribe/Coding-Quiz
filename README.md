@@ -1,16 +1,17 @@
 # Coding Quiz
 
 ## Description
+This quiz was built using HTML, CSS and JavaScript. It is a timed coding quiz with multiple-choice questions. Use this quiz as a fun game for testing basic coding knowledge.
 
 ## User Story
-
+```
 AS A coding boot camp student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
 SO THAT I can gauge my progress compared to my peers
-
+```
 
 ## Acceptance Criteria
-
+```
 GIVEN I am taking a code quiz
 WHEN I click the start button
 THEN a timer starts and I am presented with a question
@@ -22,10 +23,14 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
+```
 
 ## References
 I found this really cool Javascript quiz on W3 Schools and used some of the questions from that quiz in my assignment.
 https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
 
+## License
+
+https://tonntribe.github.io/Coding-Quiz/
 ![Challenge #4 Coding Quiz](https://user-images.githubusercontent.com/127579030/231950327-4287c4f7-2d78-4368-abf6-83f5df70235b.png)
 
